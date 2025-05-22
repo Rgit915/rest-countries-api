@@ -1,4 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import data from "../data.json";
 
 const CountryDetail = () => {
@@ -25,7 +27,7 @@ const CountryDetail = () => {
     <article className="py-8 text-black dark:text-white">
       <button
         onClick={() => navigate(-1)}
-        className="mb-8 px-6 py-2 bg-white dark:bg-neutral-blue-900-dark-mode shadow rounded text-black dark:text-white"
+        className="mb-8 px-6 py-2 bg-white dark:bg-neutral-blue-900-dark-mode shadow rounded text-black dark:text-white cursor-pointer hover:bg-neutral-grey-light-mode-input"
       >
         ← Back
       </button>
@@ -81,12 +83,20 @@ const CountryDetail = () => {
                   const borderCountry = data.find(
                     (c) => c.alpha3Code === borderCode
                   );
-                  return (
+                  return borderCountry ? (
+                    <Link
+                      to={`/country/${borderCountry.name}`}
+                      key={borderCode}
+                      className="px-3 py-1 bg-white dark:bg-neutral-blue-900-dark-mode text-sm shadow rounded text-black dark:text-white hover:bg-neutral-grey-light-mode-input dark:hover:bg-neutral-blue-800-dark-mode transition"
+                    >
+                      {borderCountry.name}
+                    </Link>
+                  ) : (
                     <span
                       key={borderCode}
                       className="px-3 py-1 bg-white dark:bg-neutral-blue-900-dark-mode text-sm shadow rounded text-black dark:text-white"
                     >
-                      {borderCountry?.name || borderCode}
+                      {borderCode}
                     </span>
                   );
                 })
