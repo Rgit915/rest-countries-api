@@ -1,10 +1,10 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
 const Header = ({darkMode, setDarkMode}) => {
   return (
     <header className="flex justify-between py-8 px-6 lg:px-12">
         <h1 className="font-extrabold leading-5 text-black-800  dark:text-white">
-          Where in the world?
+         <Link  to="/">Where in the world?</Link>
         </h1>
 
         <button
