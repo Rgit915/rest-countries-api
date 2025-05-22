@@ -72,7 +72,7 @@ const CountryDetail = () => {
         />
 
         <div className="space-y-4">
-          <h2 className="text-3xl font-extrabold">{country.name}</h2>
+          <h2 className="text-2xl lg:text-4xl font-extrabold">{country.name}</h2>
           <div className="lg:flex items-center justify-between mb-10">
             <div>
               <p>
