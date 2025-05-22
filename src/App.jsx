@@ -2,14 +2,23 @@ import { useState, useEffect } from "react";
 import data from "./data.json";
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+  
+// On initial load, check if a theme preference is saved in localStorage
+useEffect(() => {
+  const savedTheme = localStorage.getItem("darkMode");
+  if (savedTheme === "true") setDarkMode(true);
+}, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
+// Update the HTML root class and save theme preference to localStorage whenever darkMode changes
+useEffect(() => {
+  if (darkMode) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  localStorage.setItem("darkMode", darkMode);
+}, [darkMode]);
+
   return (
     <>
       <header className="flex justify-between py-8 px-6 lg:px-12">
