@@ -5,7 +5,7 @@ const FilterByRegion = ({ selectedRegion, setSelectedRegion }) => {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   return (
-    <div className="relative filter w-2/3 my-12 md:w-1/5 dark:bg-neutral-blue-900-dark-mode dark:text-white rounded-md cursor-pointer">
+    <div className="relative filter w-2/3 my-12 md:w-1/3 lg:w-1/5 dark:bg-neutral-blue-900-dark-mode dark:text-white rounded-md cursor-pointer">
     <div
         className="flex justify-between items-center py-4 px-6 rounded-md [box-shadow:0px_2px_9px_0px_hsla(0,0%,0%,0.05)]"
         onClick={() => setDropdownOpen(!dropdownOpen)}
