@@ -1,18 +1,51 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import data from "../data.json";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const CountryDetail = () => {
   const { name } = useParams();
   const navigate = useNavigate();
 
-  const country = data.find((c) => c.name.toLowerCase() === name.toLowerCase());
+  const [country, setCountry] = useState(null);
+  const [borderCountries, setBorderCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!country) {
+  // Fetch the selected country data
+  useEffect(() => {
+    const fetchCountry = async () => {
+      try {
+        const res = await fetch(`https://restcountries.com/v2/name/${name}?fullText=true`);
+        if (!res.ok) throw new Error("Country not found");
+        const data = await res.json();
+        const countryData = data[0];
+        setCountry(countryData);
+
+        // Fetch border countries if available
+        if (countryData.borders?.length > 0) {
+          const bordersRes = await fetch(
+            `https://restcountries.com/v2/alpha?codes=${countryData.borders.join(",")}`
+          );
+          const bordersData = await bordersRes.json();
+          setBorderCountries(bordersData);
+        } else {
+          setBorderCountries([]);
+        }
+
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchCountry();
+  }, [name]);
+
+  if (loading) return <p className="text-center text-black dark:text-white">Loading...</p>;
+  if (error)
     return (
       <div className="text-center text-black dark:text-white">
-        <p>Country not found.</p>
+        <p>{error}</p>
         <button
           onClick={() => navigate("/")}
           className="mt-4 px-4 py-2 bg-gray-300 dark:bg-neutral-blue-900-dark-mode text-black dark:text-white rounded"
@@ -21,7 +54,6 @@ const CountryDetail = () => {
         </button>
       </div>
     );
-  }
 
   return (
     <article className="py-8 text-black dark:text-white">
@@ -47,8 +79,7 @@ const CountryDetail = () => {
                 <strong>Native Name:</strong> {country.nativeName}
               </p>
               <p>
-                <strong>Population:</strong>{" "}
-                {country.population.toLocaleString()}
+                <strong>Population:</strong> {country.population.toLocaleString()}
               </p>
               <p>
                 <strong>Region:</strong> {country.region}
@@ -62,8 +93,7 @@ const CountryDetail = () => {
             </div>
             <div>
               <p>
-                <strong>Top Level Domain:</strong>{" "}
-                {country.topLevelDomain?.join(", ")}
+                <strong>Top Level Domain:</strong> {country.topLevelDomain?.join(", ")}
               </p>
               <p>
                 <strong>Currencies:</strong>{" "}
@@ -75,31 +105,20 @@ const CountryDetail = () => {
               </p>
             </div>
           </div>
+
           <div>
             <h3 className="font-extrabold">Border Countries:</h3>
             <div className="flex flex-wrap gap-2 mt-2">
-              {country.borders?.length > 0 ? (
-                country.borders.map((borderCode) => {
-                  const borderCountry = data.find(
-                    (c) => c.alpha3Code === borderCode
-                  );
-                  return borderCountry ? (
-                    <Link
-                      to={`/country/${borderCountry.name}`}
-                      key={borderCode}
-                      className="px-3 py-1 bg-white dark:bg-neutral-blue-900-dark-mode text-sm shadow rounded text-black dark:text-white hover:bg-neutral-grey-light-mode-input dark:hover:bg-neutral-blue-800-dark-mode transition"
-                    >
-                      {borderCountry.name}
-                    </Link>
-                  ) : (
-                    <span
-                      key={borderCode}
-                      className="px-3 py-1 bg-white dark:bg-neutral-blue-900-dark-mode text-sm shadow rounded text-black dark:text-white"
-                    >
-                      {borderCode}
-                    </span>
-                  );
-                })
+              {borderCountries.length > 0 ? (
+                borderCountries.map((bCountry) => (
+                  <Link
+                    to={`/country/${bCountry.name}`}
+                    key={bCountry.alpha3Code}
+                    className="px-3 py-1 bg-white dark:bg-neutral-blue-900-dark-mode text-sm shadow rounded text-black dark:text-white hover:bg-neutral-grey-light-mode-input dark:hover:bg-neutral-blue-800-dark-mode transition"
+                  >
+                    {bCountry.name}
+                  </Link>
+                ))
               ) : (
                 <p>No border countries</p>
               )}
