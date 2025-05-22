@@ -17,7 +17,7 @@ const FilterByRegion = ({ selectedRegion, setSelectedRegion }) => {
       </div>
 
       {dropdownOpen && (
-        <ul className="absolute region-list [box-shadow:0px_2px_9px_0px_hsla(0,0%,0%,0.05)] p-4 text-left gap-2 w-full rounded-md mt-2 dark:bg-neutral-blue-900-dark-mode dark:text-white">
+        <ul className="absolute region-list [box-shadow:0px_2px_9px_0px_hsla(0,0%,0%,0.05)] p-4 text-left gap-2 w-full rounded-md mt-2 bg-white  dark:bg-neutral-blue-900-dark-mode dark:text-white">
           {regions.map((region) => (
             <li
               key={region}
