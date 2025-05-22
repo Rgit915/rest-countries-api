@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import CountryDetail from "./pages/CountryDetail";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
       >
         <Route index element={<HomePage />} />
         <Route path="/country/:name" element={<CountryDetail />} />
-        <Route path="*" element={<h1 className="text-center mt-12 text-xl font-semibold dark:text-white">404 - Page Not Found</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
