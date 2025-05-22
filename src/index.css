@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-nunito-sans: "Nunito Sans", sans-serif;
+
+  /* Colors */
+  --color-neutral-blue-900-dark-mode: hsl(209, 23%, 22%);
+  --color-neutral-blue-950-dark-mode: hsl(207, 26%, 17%);
+  --color-neutral-grey-950-light-mode-text: hsl(200, 15%, 8%);
+  --color-neutral-grey-light-mode-input: hsl(0, 0%, 50%);
+  --color-neutral-grey-50-light-mode-background: hsl(0, 0%, 99%);
+  --color-white: hsl(0, 100%, 100%);
+  --color-black-800: hsla(200, 15%, 8%, 1);
+
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  img{
+    @apply max-w-full;
+  }
+  body {
+    @apply bg-white font-nunito-sans text-sm flex flex-col min-h-full md:justify-center md:items-center gap-16;
+  }
+  main{
+    @apply flex flex-col justify-center items-center w-full p-6 lg:p-12 gap-8 mt-8 bg-neutral-grey-50-light-mode-background;
+  }
+  header{
+    @apply [box-shadow:0px_2px_4px_0px_hsla(0,0%,0%,0.06)];
+  }
+
+}
