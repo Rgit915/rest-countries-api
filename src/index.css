@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Fonts */
@@ -28,13 +29,13 @@
     @apply max-w-full;
   }
   body {
-    @apply bg-white font-nunito-sans text-sm flex flex-col min-h-full md:justify-center md:items-center gap-16;
+    @apply bg-white font-nunito-sans text-sm flex flex-col min-h-full md:justify-center md:items-center gap-16 dark:bg-neutral-blue-950-dark-mode dark:text-white;
   }
   main{
-    @apply flex flex-col justify-center items-center w-full p-6 lg:p-12 gap-8 mt-8 bg-neutral-grey-50-light-mode-background;
+    @apply flex flex-col justify-center items-center w-full p-6 lg:p-12 gap-8 mt-8 bg-neutral-grey-50-light-mode-background dark:bg-neutral-blue-950-dark-mode dark:text-white;
   }
   header{
-    @apply [box-shadow:0px_2px_4px_0px_hsla(0,0%,0%,0.06)];
+    @apply [box-shadow:0px_2px_4px_0px_hsla(0,0%,0%,0.06)] dark:bg-neutral-blue-900-dark-mode dark:text-white;
   }
 
 }
