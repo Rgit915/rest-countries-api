@@ -32,11 +32,11 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop preview](https://github.com/Rgit915/rest-api-countries/blob/master/screenshots/rest-countries-api-filter-by-region-solution-preview)
+![Desktop preview](https://github.com/Rgit915/rest-countries-api/blob/master/screenshots/rest-countries-api-filter-by-region-solution-preview.png)
 
-![Tablet preview](https://github.com/Rgit915/rest-api-countries/blob/master/screenshots/rest-countries-api-tablet-single-country-detail-solution-preview.png)
+![Tablet preview](https://github.com/Rgit915/rest-countries-api/blob/master/screenshots/rest-countries-api-tablet-single-country-detail-solution-preview.png)
 
-![Mobile preview](https://github.com/Rgit915/rest-api-countries/blob/master/screenshots/rest-countries-api-mobile-filter-solution-preview.png)
+![Mobile preview](https://github.com/Rgit915/rest-countries-api/blob/master/screenshots/rest-countries-api-mobile-filter-solution-preview.png)
 
 
 ### Links
