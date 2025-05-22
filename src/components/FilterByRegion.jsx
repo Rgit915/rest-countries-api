@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const FilterByRegion = ({ selectedRegion, setSelectedRegion }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+  const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   return (
     <div className="relative filter w-2/3 my-12 md:w-1/5 dark:bg-neutral-blue-900-dark-mode dark:text-white rounded-md cursor-pointer">
