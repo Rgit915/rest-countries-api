@@ -109,6 +109,22 @@ const App = () => {
                 </div>
               </article>
             ))}
+          {
+            // Check if filtered results are empty
+            data.filter((country) => {
+              const matchRegion = selectedRegion
+                ? country.region === selectedRegion
+                : true;
+              const matchSearch = country.name
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
+              return matchRegion && matchSearch;
+            }).length === 0 && (
+              <p className="text-center col-span-full text-black-800 dark:text-white">
+                No countries found matching your filters.
+              </p>
+            )
+          }
         </section>
       </main>
     </>
